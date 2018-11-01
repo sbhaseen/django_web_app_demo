@@ -1,4 +1,4 @@
-# django_web_app_demo
+# Django Web App Demo
 ### A demo website written in Python's Django framework
 
 This project is based on the essentials learned from the Mozilla Developer Network (MDN) tutorials which can be found [here](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Tutorial_local_library_website).
