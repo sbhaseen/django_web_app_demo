@@ -1,0 +1,30 @@
+{% extends "base_generic.html" %}
+
+{% block title %}<title>Library | Home</title>{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+  <h1>Library Home</h1>
+  <h5 align="center">Welcome to the Web App Demo designed by iSquare Logix!</h5>
+  <p>Some advantages to using a framework like Django include less setup time as a lot of the common functions are built-in
+    and the templating systems makes it easy to design a base page and simply re-use that design for other sections by extending the base.<p>
+</div>
+<div class="container">
+  <h2>Dynamic content</h2>
+  <p>This demo, based on the local library project from <em>Mozilla Developer Network</em>, has the following record counts which can update dynamically via the Python-Django back-end.:</p>
+  <ul>
+    <li><strong>Books:</strong> {{ num_books }}</li>
+    <li><strong>Copies:</strong> {{ num_instances }}</li>
+    <li><strong>Copies available:</strong> {{ num_instances_available }}</li>
+    <li><strong>Authors:</strong> {{ num_authors }}</li>
+    <li><strong>Books with 'robots':</strong> {{ num_contains_word }}</li>
+  </ul>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <!--span class="text-muted">Place sticky footer content here.</span-->
+    <p align="center">You have visited this page {{ num_visits }}{% if num_visits == 1 %} time{% else %} times{% endif %}.</p>
+  </div>
+</footer>
+{% endblock %}
