@@ -26,8 +26,8 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url 'books' %}">All books</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url 'authors' %}">All authors</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'books' %}">Books</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'authors' %}">Authors</a></li>
         <div class="dropdown">
           {% if user.is_authenticated %}
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
