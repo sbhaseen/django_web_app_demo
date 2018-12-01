@@ -323,7 +323,6 @@ class AuthorCreateViewTest(TestCase):
         login = self.client.login(username='testuser1', password='1X<ISRUkw+tuK')
         resp = self.client.get(reverse('author_create'))
         self.assertEqual(resp.status_code, 403)
-        # self.assertRedirects(resp, '/accounts/login/?next=/catalog/author/create/')
 
     def test_logged_in_with_permission(self):
         login = self.client.login(username='testuser2', password='2HJ1vRV0Z&3iD')
@@ -351,7 +350,7 @@ class SearchBooksListViewTest(TestCase):
         test_language = Language.objects.create(name='English')
         test_book = Book.objects.create(
             title='Book Title',
-            summary='My book summary',
+            summary='My book summary has interesting stories of machines and robots',
             isbn='1234567890123',
             author=test_author,
             language=test_language,
@@ -376,8 +375,34 @@ class SearchBooksListViewTest(TestCase):
         # Check that urls.py is configured correctly
         response = self.client.get(reverse('search'))
 
-        # Check that we got a response "success"
+        # Check response was a "success"
         self.assertEqual(response.status_code, 200)
 
-        # Check we used correct template
+        # Check correct template used
         self.assertTemplateUsed(response, 'catalog/book_search.html')
+
+    def test_search_function_redirect_and_query(self):
+        # Check genre returns a book
+        resp = self.client.get('/catalog/search/', {'q': 'fiction'})
+        self.assertEqual(resp.status_code, 200)
+        self.assertTrue(len(resp.context['book_list']) > 0)
+
+                # Check author returns a book
+        resp = self.client.get('/catalog/search/', {'q': 'john smith'})
+        self.assertEqual(resp.status_code, 200)
+        self.assertTrue(len(resp.context['book_list']) > 0)
+
+        # Check title returns a book
+        resp = self.client.get('/catalog/search/', {'q': 'book title'})
+        self.assertEqual(resp.status_code, 200)
+        self.assertTrue(len(resp.context['book_list']) > 0)
+
+        # Check summary returns a book
+        resp = self.client.get('/catalog/search/', {'q': 'machine'})
+        self.assertEqual(resp.status_code, 200)
+        self.assertTrue(len(resp.context['book_list']) > 0)
+
+        # Check out of scope search does not return any book
+        resp = self.client.get('/catalog/search/', {'q': 'drama'})
+        self.assertEqual(resp.status_code, 200)
+        self.assertTrue(len(resp.context['book_list']) == 0)
