@@ -17,17 +17,24 @@
 
 </head>
 <body>
+  <header>
   {% block navbar %}
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <!--a class="navbar-brand" href="#">Fixed navbar</a-->
+    <a class="navbar-brand" href="{% url 'index' %}">Library</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url 'books' %}">Books</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url 'authors' %}">Authors</a></li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'index' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'books' %}">Books</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'authors' %}">Authors</a>
+        </li>
         <div class="dropdown">
           {% if user.is_authenticated %}
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -41,11 +48,11 @@
           {% endif %}
           {% if user.is_staff %}
           <div class="dropdown-divider"></div>
-          <h6 class="dropdown-header">Staff</h6>
-          {% if perms.catalog.can_mark_returned %}
-          <a class="dropdown-item" href="{% url 'all-borrowed' %}">All borrowed</a>
-          <a class="dropdown-item" href="{% url 'author_create' %}">Add an author</a>
-          <a class="dropdown-item" href="{% url 'book_create' %}">Add a book</a>
+            <h6 class="dropdown-header">Staff</h6>
+            {% if perms.catalog.can_mark_returned %}
+            <a class="dropdown-item" href="{% url 'all-borrowed' %}">All borrowed</a>
+            <a class="dropdown-item" href="{% url 'author_create' %}">Add an author</a>
+            <a class="dropdown-item" href="{% url 'book_create' %}">Add a book</a>
           {% endif %}
           {% endif %}
           </div>
@@ -58,6 +65,7 @@
     </div>
   </nav>
   {% endblock %}
+</header>
 
   <main role="main" class="container-fluid">
     {% block content %}
