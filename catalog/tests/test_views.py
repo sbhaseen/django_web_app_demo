@@ -382,12 +382,11 @@ class SearchBooksListViewTest(TestCase):
         self.assertTemplateUsed(response, 'catalog/book_search.html')
 
     def test_search_function_redirect_and_query(self):
-        # Check genre returns a book
-        resp = self.client.get('/catalog/search/', {'q': 'fiction'})
-        self.assertEqual(resp.status_code, 200)
-        self.assertTrue(len(resp.context['book_list']) > 0)
-
-                # Check author returns a book
+        """
+        The search class based view `BookSearchListView` in views.py queries
+        these SearchVectors from the Book model: author, title, summary, genre
+        """
+        # Check author returns a book
         resp = self.client.get('/catalog/search/', {'q': 'john smith'})
         self.assertEqual(resp.status_code, 200)
         self.assertTrue(len(resp.context['book_list']) > 0)
@@ -399,6 +398,11 @@ class SearchBooksListViewTest(TestCase):
 
         # Check summary returns a book
         resp = self.client.get('/catalog/search/', {'q': 'machine'})
+        self.assertEqual(resp.status_code, 200)
+        self.assertTrue(len(resp.context['book_list']) > 0)
+
+        # Check genre returns a book
+        resp = self.client.get('/catalog/search/', {'q': 'fiction'})
         self.assertEqual(resp.status_code, 200)
         self.assertTrue(len(resp.context['book_list']) > 0)
 
