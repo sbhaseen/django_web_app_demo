@@ -168,3 +168,32 @@ class BookDelete(PermissionRequiredMixin, DeleteView):
     model = Book
     success_url = reverse_lazy('books')
     permission_required = 'catalog.can_mark_returned'
+
+
+from django.contrib.postgres.search import SearchQuery, SearchRank, SearchVector
+
+
+class BookSearchListView(generic.ListView):
+    """
+    Display a Book List page filtered by the search query.
+    """
+    model = Book
+    paginate_by = 10
+    template_name = 'catalog/book_search.html'
+
+    def get_queryset(self):
+        qs = Book.objects.all()
+
+        keywords = self.request.GET.get('q')
+        if keywords:
+            query = SearchQuery(keywords)
+            # ManyToMany or ForeignKey fields need (double underscore) lookup type to work: in this case __name
+            vector = SearchVector('author__first_name',
+                                  'author__last_name',
+                                  'title',
+                                  'summary',
+                                  'genre__name')
+            qs = qs.annotate(search=vector).filter(search=query)
+            qs = qs.annotate(rank=SearchRank(vector, query)).order_by('-rank')
+
+        return qs

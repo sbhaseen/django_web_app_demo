@@ -342,3 +342,42 @@ class AuthorCreateViewTest(TestCase):
         #Manually check redirect because we don't know what author was created
         self.assertEqual(resp.status_code, 302)
         self.assertTrue(resp.url.startswith('/catalog/author/'))
+
+# Test basic text search functionality
+class SearchBooksListViewTest(TestCase):
+    def setUp(self):
+        test_author = Author.objects.create(first_name='John', last_name='Smith')
+        test_genre = Genre.objects.create(name='Science Fiction')
+        test_language = Language.objects.create(name='English')
+        test_book = Book.objects.create(
+            title='Book Title',
+            summary='My book summary',
+            isbn='1234567890123',
+            author=test_author,
+            language=test_language,
+        )
+
+        # Create genre as a post-step
+        genre_objects_for_book = Genre.objects.all()
+        test_book.genre.set(genre_objects_for_book) # Direct assignment of many-to-many types not allowed.
+        test_book.save()
+
+        # Create 30 BookInstance objects
+        number_of_book_copies = 30
+        for book_copy in range(number_of_book_copies):
+            status = 'a'
+            BookInstance.objects.create(
+                book=test_book,
+                imprint='Unlikely Imprint, 2016',
+                status=status,
+            )
+
+    def test_uses_correct_template(self):
+        # Check that urls.py is configured correctly
+        response = self.client.get(reverse('search'))
+
+        # Check that we got a response "success"
+        self.assertEqual(response.status_code, 200)
+
+        # Check we used correct template
+        self.assertTemplateUsed(response, 'catalog/book_search.html')
