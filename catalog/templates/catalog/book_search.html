@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container">
   <h1>Book Search Results</h1>
-  <p>The results of the search query:</p>
+  <p>The results of the search query: {{ request.GET.q }}</p>
   {% if book_list %}
   <ul>
     {% for book in book_list %}
