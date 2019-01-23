@@ -1,6 +1,7 @@
 from django.urls import path
 
 from . import views
+from .views import get_data
 
 
 urlpatterns = [
@@ -10,6 +11,7 @@ urlpatterns = [
     path('authors/', views.AuthorListView.as_view(), name='authors'),
     path('author/<int:pk>', views.AuthorDetailView.as_view(), name='author-detail'),
     path('search/', views.BookSearchListView.as_view(), name='search'),
+    path('api/data/', get_data, name='api-data'),
 ]
 
 

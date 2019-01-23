@@ -197,3 +197,25 @@ class BookSearchListView(generic.ListView):
             qs = qs.annotate(rank=SearchRank(vector, query)).order_by('-rank')
 
         return qs
+
+
+from django.http import JsonResponse
+
+def get_data(request, *args, **kwargs):
+    """
+    Get data for charts.
+    """
+    # Available copies of books
+    qs_available = BookInstance.objects.filter(status__exact='a').count()
+    # Books in maintenance
+    qs_maintenance = BookInstance.objects.filter(status__exact='m').count()
+    # Books on loan
+    qs_loaned = BookInstance.objects.filter(status__exact='o').count()
+
+    labels = ["Available", "Maintenance", "Loaned"]
+    data_items = [qs_available, qs_maintenance, qs_loaned]
+
+    data = {"labels": labels,
+            "data": data_items
+    }
+    return JsonResponse(data)
