@@ -13,7 +13,7 @@ $.ajax({
     success: function(data) {
       chartLabels = data.labels;
       chartData = data.data;
-      setChart()
+      setChart();
     },
     error: function(error_data) {
       console.log("error");
