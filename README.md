@@ -6,4 +6,4 @@ I have expanded upon the basic tutorial by including the most recent packages as
 
 Added basic text search that uses Django's built in functions for PostgreSQL, based on this [documentation](https://docs.djangoproject.com/en/2.1/ref/contrib/postgres/search/).
 
-Added [Chart.js](https://www.chartjs.org/) for data visualization and pseudo lightweight API for data extraction.
+Added a lightweight API for data extraction and [Chart.js](https://www.chartjs.org/) for data visualization.
