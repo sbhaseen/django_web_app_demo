@@ -11,9 +11,14 @@
 {% block content %}
 <div class="jumbotron">
   <h1>Library Home</h1>
-  <h5 align="center">Welcome to the Web App Demo designed by Shan at iSquare Logix!</h5>
-  <p>Some advantages to using a framework like Django include less setup time as a lot of the common functions are built-in
-    and the templating systems makes it easy to design a base page and simply re-use that design for other sections by extending the base.<p>
+  <h5 align="center">Welcome to the Web App Demo by Shan!</h5>
+  <p>
+    Some advantages to using a framework like Django include less setup time as a lot of the common functions are
+    built-in
+    and the templating systems makes it easy to design a base page and simply re-use that design for other sections by
+    extending the base.
+    <p>
+      <small>See the <a href="https://github.com/sbhaseen/django_web_app_demo">GitHub repo</a>.</small>
 </div>
 
 <div class="container">
@@ -43,7 +48,8 @@
 <footer class="footer">
   <div class="container">
     <!--span class="text-muted">Place sticky footer content here.</span-->
-    <p align="center">You have visited this page {{ num_visits }}{% if num_visits == 1 %} time{% else %} times{% endif %}.</p>
+    <p align="center">You have visited this page {{ num_visits }}{% if num_visits == 1 %} time{% else %}
+      times{% endif %}.</p>
   </div>
 </footer>
 {% endblock %}
