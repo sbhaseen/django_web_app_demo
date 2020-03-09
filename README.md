@@ -91,7 +91,7 @@ The main page:
 ![Main page](https://sbhaseen.github.io/django_web_app_demo/img/MainPage.png)
 
 The main page in mobile view:
-![Main mobile page](https://sbhaseen.github.io/django_web_app_demo/img/MobileMain.png)
+<img src="https://sbhaseen.github.io/django_web_app_demo/img/MobileMain.png" alt="main mobile page" width="360">
 
 The book list:
 ![Book list](https://sbhaseen.github.io/django_web_app_demo/img/BookList.png)
