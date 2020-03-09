@@ -88,12 +88,16 @@ Heroku should automatically configure the database connection infromation (e.g. 
 Here are some screenshots of the application.
 
 The main page:
+![Main page](https://sbhaseen.github.io/django_web_app_demo/img/MainPage.png)
 
 The main page in mobile view:
+![Main mobile page](https://sbhaseen.github.io/django_web_app_demo/img/MobileMain.png)
 
 The book list:
+![Book list](https://sbhaseen.github.io/django_web_app_demo/img/BookList.png)
 
 The author list:
+![Author list](https://sbhaseen.github.io/django_web_app_demo/img/Authors.png)
 
 ## Built With
 
