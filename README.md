@@ -2,53 +2,70 @@
 
 ### A demo website written in Python's Django framework
 
-This project is based on the essentials learned from the Mozilla Developer Network (MDN) tutorials which can be found [here](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Tutorial_local_library_website). I have expanded upon the basic tutorial by including the most recent Python packages as of October 2018 and revised sections, including units tests, to reflect Dango 2.1 changes. I have designed the front-end by using examples from [Bootstrap 4](https://getbootstrap.com/docs/4.1/examples/).
+This project is based on the essentials learned from the Mozilla Developer Network (MDN) tutorials which can be found [here](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Tutorial_local_library_website).
 
-- Added basic text search that uses Django's built in functions for PostgreSQL, based on this [documentation](https://docs.djangoproject.com/en/2.1/ref/contrib/postgres/search/).
+Originally create as a learning project in October 2018, this has been updated occasionally to the most recent versions of the technology stack and also to expand on the skills and technologies learned over the years.
 
-- Added a lightweight API for data extraction and [Chart.js](https://www.chartjs.org/) for data visualization.
+Most recently:
+
+- Overhauled to the Django 3. (July 2021)
+- Converted to Bootstrap 5. (July 2021)
+- Custom auto-detecting (`prefers-color-scheme: dark`) dark theme using CSS variables and a simple vanilla JavaScript toggle. (July 2021)
+- Perpared for Docker with PostgreSQL. (July 2021)
 
 ## Getting Started with Development
 
-This project uses Python 3, Django and a PostgreSQL database (production and development). A development virtual environment created with `venv` is recommended.
+This project uses Python 3, Django 3+ and a PostgreSQL database (SQLite in development).
 
 ### Prerequisites
 
-A project folder with a Python 3 `venv` sub-folder for easier integration with VS Code.
+Use a Python virtual environment for local development.
+
+```bash
+python3 -m venv env
+```
 
 ### Installing
 
 Activate the Python virtual environemnt and then install with:
 
-```
+```bash
 pip install -r requirements.txt
+```
+
+To run with Docker:
+
+```bash
+docker-compose up
+```
+
+To end the session with Docker (with optional volume flag):
+
+```bash
+docker-compose down
+...
+docker-compose down -v
 ```
 
 For development the Django defaults apply, see the official [Django documentation](https://docs.djangoproject.com/en/2.2/) for more details.
 
-Some examples:
+Quick reference:
 
-```
+```bash
 python manage.py startapp appname
+python manage.py createsuperuser
+python manage.py makemigrations
 python manage.py migrate
 python manage.py runserver
 ```
 
 The following environment variables need to be set so that they can be accessed in `settings.py`:
 
-Where
+## Environment Variables
 
+- `DEVELOPMENT_MODE` is a boolean to enable development options. Defaults to False.
 - `APP_SECRET_KEY` is the encryption key used by Django, specifc to development. It is recommended to use a different key in production.
-- `APP_DB_NAME` is the PostgreSQL database name
-- `APP_DB_USER` is the database user
-- `APP_DB_PASSWORD` is the database password for the user
-
-```
-APP_SECRET_KEY
-APP_DB_NAME
-APP_DB_USER
-APP_DB_PASSWORD
-```
+- `DATABASE_URL` is the url for a database connection. _This may vary based on deployment platform (Heroku, DigitalOcean, etc.)._
 
 ## Tests
 
@@ -58,30 +75,10 @@ Test are performed with Python's built in testing library.
 python manage.py test
 ```
 
-### Testing details
-
-The main objective for testing is to cover any custom classes and functions that were created to render the application and handle data manipulation.
-
-All tests are in the folder `tests`.
-
 ## Deployment
 
-The following environment variables need to be set so that they can be accessed in `settings.py`:
-
-Note that `DJANGO_SECRET_KEY` should be different from the `APP_SECRET_KEY` (used in development) for better security.
-
-```
-DJANGO_SECRET_KEY
-APP_DB_NAME
-APP_DB_USER
-APP_DB_PASSWORD
-```
-
-For demonstration purposes this application was deployed on Heroku.
-
-Specific to Heroku, a `Procfile` was required to tell the service to use `gunicorn` and the `locallibrary.wsgi` implementation.
-
-Heroku should automatically configure the database connection infromation (e.g. `APP_DB_NAME`, etc.) if the PostgreSQL add-on is used. If using another database provider, the environment variables listed above will need to be configured accordingly.
+Use a Docker capable deployment process for best results.
+Always verify if any environment variables will need to be modified to suit the deployment platform.
 
 ## Usage
 
@@ -89,25 +86,29 @@ Here are some screenshots of the application.
 
 The main page:
 
-![Main page](https://sbhaseen.github.io/django_web_app_demo/img/MainPage.png)
+![Main Desktop Light](docs/Main_Desktop_Light.png)
+![Main Desktop Dark](docs/Main_Desktop_Dark.png)
 
 The main page in mobile view:
 
-<img src="https://sbhaseen.github.io/django_web_app_demo/img/MobileMain.png" alt="main mobile page" width="360">
+<img src="docs/Main_Mobile_Light.png" alt="main mobile page" width="360" />
+<br />
+<img src="docs/Main_Mobile_Dark.png" alt="main mobile page" width="360" />
 
 The book list:
 
-![Book list](https://sbhaseen.github.io/django_web_app_demo/img/BookList.png)
+![Book list](docs/Books_Desktop_Dark.png)
+![Add a Book](docs/Books_Add_Desktop_Dark.png)
 
 The author list:
 
-![Author list](https://sbhaseen.github.io/django_web_app_demo/img/Authors.png)
+![Author list](docs/Authors_Desktop_Dark.png)
 
 ## Built With
 
 - [Django](https://www.djangoproject.com/) - a high-level Python Web framework that encourages rapid development and clean, pragmatic design
+
 - [Bootstrap (front-end library)](https://getbootstrap.com/) - Bootstrap is an open source toolkit for developing with HTML, CSS, and JS.
-- [Chart.js](https://www.chartjs.org/) - Simple yet flexible JavaScript charting for designers & developers
 
 ## License
 

@@ -1,55 +1,48 @@
 {% extends "base_generic.html" %}
-{% load staticfiles %}
-
-{% block javascript %}
-<script src="{% static 'js/Chart.bundle.min.js' %}"></script>
-<script src="{% static 'js/chartrenders.js' %}"></script>
-{% endblock %}
-
 {% block title %}<title>Library | Home</title>{% endblock %}
-
 {% block content %}
-<div class="jumbotron">
-  <h1>Library Home</h1>
-  <h5 align="center">Welcome to the Web App Demo by Shan!</h5>
+
+<div class="container py-5">
+  <h1 class="display-5 fw-bold mb-4">Library Home</h1>
+  <h5 class="mb-4">Welcome to the Web App Demo by Shan!</h5>
+  <p class="col-md-8 fs-4">
+    Some advantages to using a framework like Django include less setup time as
+    a lot of the common functions are built-in and the templating systems makes
+    it easy to design a base page and simply re-use that design for other
+    sections by extending the base.
+  </p>
+  <hr />
   <p>
-    Some advantages to using a framework like Django include less setup time as a lot of the common functions are
-    built-in
-    and the templating systems makes it easy to design a base page and simply re-use that design for other sections by
-    extending the base.
-    <p>
-      <small>See the <a href="https://github.com/sbhaseen/django_web_app_demo">GitHub repo</a>.</small>
+    <small>See the
+      <a href="https://github.com/sbhaseen/django_web_app_demo">GitHub repo</a>.
+    </small>
+  </p>
 </div>
 
-<div class="container">
 
+<div class="container">
   <h2>Dynamic content</h2>
-  <p>This demo has the following record counts which can update dynamically via the Python-Django back-end.:</p>
+  <p>
+    This demo has the following record counts which can update dynamically via
+    the Django back-end:
+  </p>
 
   <div class="row">
-
     <div class="col-sm-6">
       <ul>
         <li><strong>Unique Book Titles:</strong> {{ num_books }}</li>
         <li><strong>Total Book Copies:</strong> {{ num_instances }}</li>
-        <li><strong>Copies available:</strong> {{ num_instances_available }}</li>
+        <li>
+          <strong>Copies available:</strong> {{ num_instances_available }}
+        </li>
         <li><strong>Authors:</strong> {{ num_authors }}</li>
       </ul>
     </div>
 
-    <div class="col-sm-6" style="position: relative; height:40vh; width:80vw">
+    <div class="col-sm-6" style="position: relative; height: 40vh; width: 80vw">
       <canvas id="statusPieChart"></canvas>
     </div>
-
   </div>
-
 </div>
 
-<footer class="footer">
-  <div class="container">
-    <!--span class="text-muted">Place sticky footer content here.</span-->
-    <p align="center">You have visited this page {{ num_visits }}{% if num_visits == 1 %} time{% else %}
-      times{% endif %}.</p>
-  </div>
-</footer>
 {% endblock %}
