@@ -4,11 +4,11 @@
 
 This project is based on the essentials learned from the Mozilla Developer Network (MDN) tutorials which can be found [here](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Tutorial_local_library_website).
 
-Originally create as a learning project in October 2018, this has been updated occasionally to the most recent versions of the technology stack and also to expand on the skills and technologies learned over the years.
+Originally created as a learning project in October 2018, this has been updated occasionally to the most recent versions of the technology stack and also to expand on the skills and technologies learned over the years.
 
 Most recently (July 2021):
 
-- Overhauled to the Django 3.
+- Overhauled to Django 3.
 - Converted to Bootstrap 5.
 - Custom auto-detecting (`prefers-color-scheme: dark`) dark theme using CSS variables and a simple vanilla JavaScript toggle.
 - Perpared for Docker with PostgreSQL.
