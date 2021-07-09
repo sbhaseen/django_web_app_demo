@@ -1,4 +1,4 @@
-# Django Web App Demo
+# Django Book Catalog
 
 ### A demo website written in Python's Django framework
 
@@ -6,16 +6,16 @@ This project is based on the essentials learned from the Mozilla Developer Netwo
 
 Originally create as a learning project in October 2018, this has been updated occasionally to the most recent versions of the technology stack and also to expand on the skills and technologies learned over the years.
 
-Most recently:
+Most recently (July 2021):
 
-- Overhauled to the Django 3. (July 2021)
-- Converted to Bootstrap 5. (July 2021)
-- Custom auto-detecting (`prefers-color-scheme: dark`) dark theme using CSS variables and a simple vanilla JavaScript toggle. (July 2021)
-- Perpared for Docker with PostgreSQL. (July 2021)
+- Overhauled to the Django 3.
+- Converted to Bootstrap 5.
+- Custom auto-detecting (`prefers-color-scheme: dark`) dark theme using CSS variables and a simple vanilla JavaScript toggle.
+- Perpared for Docker with PostgreSQL.
 
 ## Getting Started with Development
 
-This project uses Python 3, Django 3+ and a PostgreSQL database (SQLite in development).
+This project uses Python, Django and a PostgreSQL database (SQLite in development).
 
 ### Prerequisites
 
